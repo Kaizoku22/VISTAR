@@ -1,0 +1,69 @@
+/* Layout container for sidebar and content */
+.manage-layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: calc(100vh - 60px); /* Adjust if header height differs */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar styles */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    background-color: #ffffff;
+    padding:  1rem;
+    border-right: 1px solid #e1e4e8;
+}
+
+.sidebar h2 {
+    font-size: 1.4rem;
+    color: #34495e;
+}
+
+/* Sidebar navigation list */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Each item as a styled card */
+.sidebar li {
+    background-color: #ffffff;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.sidebar li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Link styles inside the cards */
+.sidebar a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 10px;
+    transition: color 0.2s ease;
+}
+
+.sidebar a:hover {
+    color: #3498db;
+}
+
+/* Main content area */
+.manage-content {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: #f9fafb;
+}

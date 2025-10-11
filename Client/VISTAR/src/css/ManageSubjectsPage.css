@@ -1,0 +1,93 @@
+.manage-subjects-container {
+    padding: 2rem;
+    background-color: #f9fafb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+  }
+  
+  .manage-subjects-container h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Table Styling */
+  .manage-subjects-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .manage-subjects-container th,
+  .manage-subjects-container td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .manage-subjects-container th {
+    background-color: #f1f4f8;
+    color: #34495e;
+    font-weight: 600;
+  }
+  
+  /* Narrow Actions Column */
+  .manage-subjects-container th:nth-child(2),
+  .manage-subjects-container td:nth-child(2) {
+    width: 160px;
+    text-align: center;
+  }
+  
+  /* Buttons */
+  .manage-subjects-container button {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0.25rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .manage-subjects-container button:hover {
+    opacity: 0.9;
+  }
+  
+  .manage-subjects-container .edit-btn {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .manage-subjects-container .delete-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .add-button-wrapper {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .add-button-wrapper button {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  /* Error & Message */
+  .manage-subjects-container p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .manage-subjects-container .empty-message {
+    margin-top: 2rem;
+    background-color: #fff3cd;
+    padding: 1rem;
+    border-left: 5px solid #ffc107;
+    border-radius: 6px;
+  }
+  

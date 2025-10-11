@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.VISTARAPP" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Blue background while the app initializes -->
+        <item name="android:windowBackground">@color/brand_splash_blue</item>
+
+        <!-- Android 12+ SplashScreen API branding -->
+        <item name="android:windowSplashScreenBackground">@color/brand_splash_blue</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_vistar_splash_logo</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+    </style>
+</resources>

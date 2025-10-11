@@ -1,0 +1,63 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs / caches
+*.log
+logs/
+.cache/
+
+# Secrets (keep example)
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Android
+Android/.gradle/
+Android/build/
+Android/app/build/
+Android/.kotlin/
+Android/local.properties
+Android/**/captures/
+Android/**/.externalNativeBuild/
+# Keep Gradle wrapper
+!Android/gradlew
+!Android/gradlew.bat
+!Android/gradle/wrapper/**
+
+# Client (Vite/React)
+Client/VISTAR/node_modules/
+Client/VISTAR/dist/
+Client/VISTAR/.vite/
+Client/VISTAR/.eslintcache
+Client/VISTAR/.env*
+!Client/VISTAR/.env.example
+
+# Server (Node/Express)
+Server/node_modules/
+Server/coverage/
+Server/.env
+Server/npm-debug.log*
+Server/yarn-error.log*
+Server/pnpm-debug.log*
+
+# Python Dashboard (Django)
+Python Dashboard/venv/
+Python Dashboard/.venv/
+Python Dashboard/**/__pycache__/
+Python Dashboard/**/*.pyc
+Python Dashboard/db.sqlite3
+Python Dashboard/media/
+Python Dashboard/staticfiles/
+# If you collect static to a specific dir, ignore it:
+# Python Dashboard/static/
+
+# Test outputs
+**/coverage/
+**/test-results/

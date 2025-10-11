@@ -1,0 +1,119 @@
+/* Container */
+.student-page {
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb;
+    color: #2c3e50;
+  }
+  
+  /* Headings */
+  .student-page h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: #34495e;
+  }
+  
+  /* Filter Row */
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-row select,
+  .filter-row button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: #ffffff;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+  
+  .filter-row select:focus,
+  .filter-row button:hover {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  }
+  
+  /* Button Styling */
+  .filter-row button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .filter-row button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Table Container */
+  .student-table-container {
+    overflow-x: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+  }
+  
+  /* Table Styling */
+  .student-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  
+  .student-table thead {
+    background-color: #ecf0f1;
+  }
+  
+  .student-table th,
+  .student-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .student-table tbody tr:hover {
+    background-color: #f4f8fb;
+  }
+  
+  /* Action Buttons */
+  .student-table button {
+    margin-right: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .student-table button:first-child {
+    background-color: #f39c12;
+    color: #fff;
+  }
+  
+  .student-table button:first-child:hover {
+    background-color: #e67e22;
+  }
+  
+  .student-table button:last-child {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  .student-table button:last-child:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  

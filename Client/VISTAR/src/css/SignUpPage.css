@@ -1,0 +1,91 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and overall page styling */
+.sign-up{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Sign-up form container */
+.sign-up-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Header styling */
+.sign-up-form h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+/* Form label and input field */
+.sign-up-form label {
+    font-size: 1rem;
+    color: #555;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.sign-up-form input[type="text"],
+.sign-up-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.sign-up-form input[type="text"]:focus,
+.sign-up-form input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Submit button styling */
+.sign-up-form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sign-up-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Add some spacing and responsive design */
+@media (max-width: 500px) {
+    .sign-up-form {
+        padding: 20px;
+    }
+
+    .sign-up-form h3 {
+        font-size: 1.2rem;
+    }
+
+    .sign-up-form input[type="submit"] {
+        font-size: 1rem;
+    }
+}
