@@ -136,3 +136,41 @@ data class MarksEntry(
     val student_name: String?,
     val roll_no: String?
 )
+
+// Profile
+data class UserProfile(
+    val id: String = "",
+    val first_name: String = "",
+    val last_name: String = "",
+    val email: String = "",
+    val phone: String = "",
+    val address: String = ""
+)
+
+data class UpdateProfileRequest(
+    val first_name: String,
+    val last_name: String,
+    val phone: String,
+    val address: String
+)
+
+// Monthly Attendance
+data class MonthlyAttendanceSession(
+    val lecture_session_id: String,
+    val started_at: String?,
+    val completed_at: String?
+)
+
+data class MonthlyAttendanceRecord(
+    val lecture_session_id: String,
+    val student_id: String,
+    val attendance: Boolean
+)
+
+data class MonthlyAttendanceResponse(
+    val year: Int,
+    val month: Int,
+    val sessions: List<MonthlyAttendanceSession>,
+    val students: List<Student>,
+    val attendance: List<MonthlyAttendanceRecord>
+)

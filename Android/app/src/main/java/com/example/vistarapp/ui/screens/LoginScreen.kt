@@ -56,8 +56,6 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
         }) {
             Text(if (loading) "Logging in..." else "Login")
         }
-        Spacer(Modifier.height(8.dp))
-        TextButton(onClick = { /* Navigate to register via caller nav */ }) { Text("Register") }
         error?.let { Spacer(Modifier.height(8.dp)); Text(it, color = MaterialTheme.colorScheme.error) }
     }
 }

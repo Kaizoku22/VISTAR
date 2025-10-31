@@ -3,6 +3,8 @@ package com.example.vistarapp.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -19,7 +21,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StudentsScreen(schoolId: String) {
+fun StudentsScreen(
+    schoolId: String,
+    onBackClick: () -> Unit = {}
+) {
     var students by remember { mutableStateOf<List<Student>>(emptyList()) }
     var standards by remember { mutableStateOf<List<Standard>>(emptyList()) }
     var divisions by remember { mutableStateOf<List<Division>>(emptyList()) }
@@ -81,9 +86,24 @@ fun StudentsScreen(schoolId: String) {
         finally { loading = false }
     }
 
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Filter Students", style = MaterialTheme.typography.headlineMedium)
-        Spacer(Modifier.height(8.dp))
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Filter Students") },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                }
+            )
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp)
+        ) {
 
         // Standard dropdown (Material3 ExposedDropdown)
         var stdExpanded by remember { mutableStateOf(false) }
@@ -186,6 +206,7 @@ fun StudentsScreen(schoolId: String) {
                 )
                 Divider()
             }
+        }
         }
     }
 }

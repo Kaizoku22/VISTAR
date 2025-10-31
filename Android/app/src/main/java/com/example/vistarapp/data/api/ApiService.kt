@@ -52,6 +52,25 @@ interface ApiService {
     @GET("attendance/sessions/{sessionId}/attendance")
     suspend fun sessionAttendance(@Path("sessionId") sessionId: String): Response<List<AttendanceRow>>
 
+    // Monthly Attendance
+    @GET("attendance/lecture/{lectureId}/monthly")
+    suspend fun getMonthlyAttendance(
+        @Path("lectureId") lectureId: String,
+        @Query("year") year: Int,
+        @Query("month") month: Int
+    ): Response<MonthlyAttendanceResponse>
+
+    @GET("attendance/lecture/{lectureId}/monthly/export")
+    suspend fun exportMonthlyAttendance(
+        @Path("lectureId") lectureId: String,
+        @Query("year") year: Int,
+        @Query("month") month: Int,
+        @Query("defaulter") includeDefaulter: Boolean = false,
+        @Query("critical") includeCritical: Boolean = false,
+        @Query("defaulter_percent") defaulterPercent: Double = 75.0,
+        @Query("critical_percent") criticalPercent: Double = 50.0
+    ): Response<okhttp3.ResponseBody>
+
     // Students (read-only)
     @GET("students/{schoolId}")
     suspend fun listStudents(
@@ -77,4 +96,11 @@ interface ApiService {
 
     @GET("marksheets/entries/{marksheetId}")
     suspend fun getMarksEntries(@Path("marksheetId") marksheetId: String): Response<List<MarksEntry>>
+
+    // Profile
+    @GET("user/{userId}/profile")
+    suspend fun getUserProfile(@Path("userId") userId: String): Response<UserProfile>
+
+    @PUT("user/{userId}/profile")
+    suspend fun updateUserProfile(@Path("userId") userId: String, @Body body: UpdateProfileRequest): Response<UserProfile>
 }

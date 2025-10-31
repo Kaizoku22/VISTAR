@@ -6,6 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -26,7 +28,8 @@ import java.util.TimeZone
 fun StartAttendanceScreen(
     schoolId: String,
     userId: String,
-    onStartAttendance: (String, String) -> Unit
+    onStartAttendance: (String, String) -> Unit,
+    onBackClick: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val cache = remember { AttendanceCache(context) }
@@ -68,9 +71,27 @@ fun StartAttendanceScreen(
         return sdf.format(cal.time)
     }
 
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Start Attendance", style = MaterialTheme.typography.headlineMedium)
-        Spacer(Modifier.height(12.dp))
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Start Attendance") },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                }
+            )
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp)
+        ) {
 
         // Form card
         ElevatedCard(
@@ -393,5 +414,6 @@ fun StartAttendanceScreen(
                 }
             }
         }
+    }
     }
 }

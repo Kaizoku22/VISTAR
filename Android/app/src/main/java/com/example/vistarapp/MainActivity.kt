@@ -18,9 +18,12 @@ import androidx.navigation.compose.composable
 import com.example.vistarapp.ui.screens.LoginScreen
 import com.example.vistarapp.ui.screens.RegisterScreen
 import com.example.vistarapp.ui.screens.HomeScreen
+import com.example.vistarapp.ui.screens.ProfileScreen
 import com.example.vistarapp.ui.screens.SchoolDashboardScreen
 import com.example.vistarapp.ui.screens.StudentsScreen
 import com.example.vistarapp.ui.screens.MarksheetsScreen
+import com.example.vistarapp.ui.screens.MarksheetDetailScreen
+import com.example.vistarapp.ui.screens.StudentMarksheetScreen
 import com.example.vistarapp.ui.screens.SelectLectureScreen
 import com.example.vistarapp.ui.screens.StartAttendanceScreen
 import android.content.Intent
@@ -51,9 +54,29 @@ class MainActivity : ComponentActivity() {
                         composable("register") { RegisterScreen(onRegistered = { navController.navigate("login") }) }
                         composable("home/{userId}") { backStackEntry ->
                             val userId = backStackEntry.arguments?.getString("userId") ?: ""
-                            HomeScreen(userId = userId, onSelectSchool = { schoolId ->
-                                navController.navigate("school/$schoolId/$userId")
-                            })
+                            HomeScreen(
+                                userId = userId, 
+                                onSelectSchool = { schoolId ->
+                                    navController.navigate("school/$schoolId/$userId")
+                                },
+                                onProfileClick = {
+                                    navController.navigate("profile/$userId")
+                                }
+                            )
+                        }
+                        composable("profile/{userId}") { backStackEntry ->
+                            val userId = backStackEntry.arguments?.getString("userId") ?: ""
+                            ProfileScreen(
+                                userId = userId,
+                                onBackClick = {
+                                    navController.popBackStack()
+                                },
+                                onLogout = {
+                                    navController.navigate("login") {
+                                        popUpTo(0) { inclusive = true }
+                                    }
+                                }
+                            )
                         }
                         composable("school/{schoolId}/{userId}") { backStackEntry ->
                             val schoolId = backStackEntry.arguments?.getString("schoolId") ?: ""
@@ -62,7 +85,8 @@ class MainActivity : ComponentActivity() {
                                 schoolId = schoolId,
                                 onStudents = { navController.navigate("students/$schoolId") },
                                 onAttendance = { navController.navigate("attendance/menu/$schoolId/$userId") },
-                                onMarksheet = { navController.navigate("marksheets/$schoolId") }
+                                onMarksheet = { navController.navigate("marksheets/$schoolId") },
+                                onBackClick = { navController.popBackStack() }
                             )
                         }
                         composable("attendance/menu/{schoolId}/{userId}") { backStackEntry ->
@@ -73,29 +97,77 @@ class MainActivity : ComponentActivity() {
                                 userId = userId,
                                 onStartAttendance = { navController.navigate("attendance/start/$schoolId/$userId") },
                                 onShowAttendance = { navController.navigate("attendance/show/$schoolId") },
-                                onMonthlyAttendance = { navController.navigate("attendance/monthly/$schoolId") }
+                                onMonthlyAttendance = { navController.navigate("attendance/monthly/$schoolId/$userId") },
+                                onBackClick = { navController.popBackStack() }
                             )
                         }
                         composable("attendance/show/{schoolId}") { backStackEntry ->
                             val schoolId = backStackEntry.arguments?.getString("schoolId") ?: ""
                             com.example.vistarapp.ui.screens.ShowAttendanceScreen(
                                 schoolId = schoolId,
-                                onOpenSession = { sessionId -> navController.navigate("attendance/show/detail/$sessionId") }
+                                onOpenSession = { sessionId -> navController.navigate("attendance/show/detail/$sessionId") },
+                                onBackClick = { navController.popBackStack() }
                             )
                         }
                         composable("attendance/show/detail/{sessionId}") { backStackEntry ->
                             val sessionId = backStackEntry.arguments?.getString("sessionId") ?: ""
-                            com.example.vistarapp.ui.screens.ShowAttendanceDetailScreen(sessionId = sessionId)
+                            com.example.vistarapp.ui.screens.ShowAttendanceDetailScreen(
+                                sessionId = sessionId,
+                                onBackClick = { navController.popBackStack() }
+                            )
                         }
-                        composable("attendance/monthly/{schoolId}") { backStackEntry ->
+                        composable("attendance/monthly/{schoolId}/{userId}") { backStackEntry ->
                             val schoolId = backStackEntry.arguments?.getString("schoolId") ?: ""
-                            com.example.vistarapp.ui.screens.MonthlyAttendanceScreen(schoolId)
+                            val userId = backStackEntry.arguments?.getString("userId") ?: ""
+                            com.example.vistarapp.ui.screens.MonthlyAttendanceScreen(
+                                schoolId = schoolId,
+                                userId = userId,
+                                onBackClick = { navController.popBackStack() }
+                            )
                         }
                         composable("students/{schoolId}") { backStackEntry ->
-                            StudentsScreen(schoolId = backStackEntry.arguments?.getString("schoolId") ?: "")
+                            StudentsScreen(
+                                schoolId = backStackEntry.arguments?.getString("schoolId") ?: "",
+                                onBackClick = { navController.popBackStack() }
+                            )
                         }
                         composable("marksheets/{schoolId}") { backStackEntry ->
-                            MarksheetsScreen(schoolId = backStackEntry.arguments?.getString("schoolId") ?: "")
+                            val schoolId = backStackEntry.arguments?.getString("schoolId") ?: ""
+                            MarksheetsScreen(
+                                schoolId = schoolId,
+                                onMarksheetClick = { marksheetId ->
+                                    navController.navigate("marksheet/detail/$marksheetId")
+                                },
+                                onBackClick = {
+                                    navController.popBackStack()
+                                }
+                            )
+                        }
+                        composable("marksheet/detail/{marksheetId}") { backStackEntry ->
+                            val marksheetId = backStackEntry.arguments?.getString("marksheetId") ?: ""
+                            MarksheetDetailScreen(
+                                marksheetId = marksheetId,
+                                onStudentClick = { studentId, marksheetId ->
+                                    navController.navigate("marksheet/student/$studentId/$marksheetId")
+                                },
+                                onBackClick = {
+                                    navController.popBackStack()
+                                }
+                            )
+                        }
+                        composable("marksheet/student/{studentId}/{marksheetId}") { backStackEntry ->
+                            val studentId = backStackEntry.arguments?.getString("studentId") ?: ""
+                            val marksheetId = backStackEntry.arguments?.getString("marksheetId") ?: ""
+                            StudentMarksheetScreen(
+                                studentId = studentId,
+                                marksheetId = marksheetId,
+                                onBackClick = {
+                                    navController.popBackStack()
+                                },
+                                onDownloadClick = { studentId, marksheetId ->
+                                    // TODO: Implement download functionality
+                                }
+                            )
                         }
                         composable("attendance/start/{schoolId}/{userId}") { backStackEntry ->
                             val schoolId = backStackEntry.arguments?.getString("schoolId") ?: ""
@@ -109,7 +181,8 @@ class MainActivity : ComponentActivity() {
                                         putExtra(RecordAttendanceActivity.EXTRA_LECTURE_NAME, lectureName)
                                     }
                                     startActivity(intent)
-                                }
+                                },
+                                onBackClick = { navController.popBackStack() }
                             )
                         }
                         // Route retained for backward compatibility if needed
